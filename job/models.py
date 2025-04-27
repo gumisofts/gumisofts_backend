@@ -3,6 +3,7 @@ from rest_framework import viewsets, permissions
 from rest_framework.decorators import action
 import os
 
+
 class Job(models.Model):
     EMPLOYMENT_TYPES = [
         ('full_time', 'Full Time'),
@@ -27,8 +28,10 @@ class Job(models.Model):
     class Meta:
         ordering = ['-posted_date']
 
+
 class JobApplication(models.Model):
-    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='applications')
+    job = models.ForeignKey(Job, on_delete=models.CASCADE,
+                            related_name='applications')
     full_name = models.CharField(max_length=255)
     email = models.EmailField()
     resume = models.FileField(upload_to='resumes/')
@@ -46,6 +49,7 @@ class JobApplication(models.Model):
 
     class Meta:
         ordering = ['-applied_date']
+
 
 class JobViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['post'], permission_classes=[permissions.AllowAny])
