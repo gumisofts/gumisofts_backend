@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
-from rest_framework.viewsets import GenericViewSet
 from rest_framework.views import APIView
+from rest_framework.viewsets import GenericViewSet
+
 from .models import Client
 from .serializers import *
 

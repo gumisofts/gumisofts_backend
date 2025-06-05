@@ -8,27 +8,47 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Client',
+            name="Client",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
-                ('title', models.CharField(max_length=255)),
-                ('company', models.CharField(max_length=255)),
-                ('picture', models.ImageField(blank=True, null=True, upload_to='')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
+                ("title", models.CharField(max_length=255)),
+                ("company", models.CharField(max_length=255)),
+                ("picture", models.ImageField(blank=True, null=True, upload_to="")),
             ],
         ),
         migrations.CreateModel(
-            name='Testimonal',
+            name="Testimonal",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('rate', models.PositiveIntegerField(default=5)),
-                ('comment', models.TextField()),
-                ('client', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='clients.client')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("rate", models.PositiveIntegerField(default=5)),
+                ("comment", models.TextField()),
+                (
+                    "client",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="clients.client"
+                    ),
+                ),
             ],
         ),
     ]

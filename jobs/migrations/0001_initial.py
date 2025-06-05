@@ -8,40 +8,87 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Job',
+            name="Job",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=255)),
-                ('description', models.TextField()),
-                ('requirements', models.TextField()),
-                ('location', models.CharField(max_length=255)),
-                ('type', models.CharField(choices=[('full_time', 'Full Time'), ('part_time', 'Part Time'), ('contract', 'Contract'), ('internship', 'Internship'), ('remote', 'Remote'), ('hybrid', 'Hybrid')], max_length=50)),
-                ('posted_date', models.DateTimeField(auto_now_add=True)),
-                ('is_active', models.BooleanField(default=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=255)),
+                ("description", models.TextField()),
+                ("requirements", models.TextField()),
+                ("location", models.CharField(max_length=255)),
+                (
+                    "type",
+                    models.CharField(
+                        choices=[
+                            ("full_time", "Full Time"),
+                            ("part_time", "Part Time"),
+                            ("contract", "Contract"),
+                            ("internship", "Internship"),
+                            ("remote", "Remote"),
+                            ("hybrid", "Hybrid"),
+                        ],
+                        max_length=50,
+                    ),
+                ),
+                ("posted_date", models.DateTimeField(auto_now_add=True)),
+                ("is_active", models.BooleanField(default=True)),
             ],
             options={
-                'ordering': ['-posted_date'],
+                "ordering": ["-posted_date"],
             },
         ),
         migrations.CreateModel(
-            name='JobApplication',
+            name="JobApplication",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('full_name', models.CharField(max_length=255)),
-                ('email', models.EmailField(max_length=254)),
-                ('resume', models.FileField(upload_to='resumes/')),
-                ('cover_letter', models.TextField()),
-                ('applied_date', models.DateTimeField(auto_now_add=True)),
-                ('status', models.CharField(choices=[('pending', 'Pending'), ('reviewed', 'Reviewed'), ('shortlisted', 'Shortlisted'), ('rejected', 'Rejected')], default='pending', max_length=20)),
-                ('job', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='applications', to='jobs.job')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("full_name", models.CharField(max_length=255)),
+                ("email", models.EmailField(max_length=254)),
+                ("resume", models.FileField(upload_to="resumes/")),
+                ("cover_letter", models.TextField()),
+                ("applied_date", models.DateTimeField(auto_now_add=True)),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("pending", "Pending"),
+                            ("reviewed", "Reviewed"),
+                            ("shortlisted", "Shortlisted"),
+                            ("rejected", "Rejected"),
+                        ],
+                        default="pending",
+                        max_length=20,
+                    ),
+                ),
+                (
+                    "job",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="applications",
+                        to="jobs.job",
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-applied_date'],
+                "ordering": ["-applied_date"],
             },
         ),
     ]

@@ -1,7 +1,8 @@
-from django.db import models
-from rest_framework import viewsets, permissions
-from rest_framework.decorators import action
 import os
+
+from django.db import models
+from rest_framework import permissions, viewsets
+from rest_framework.decorators import action
 
 
 class Job(models.Model):
