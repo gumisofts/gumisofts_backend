@@ -1,0 +1,35 @@
+{
+    "dev": {
+        "aws_region": "eu-north-1",
+        "django_settings": "core.settings",
+        "exclude": [
+            "boto3",
+            "dateutil",
+            "botocore",
+            "s3transfer",
+            "concurrent"
+        ],
+        "profile_name": "gumisofts",
+        "project_name": "gumisofts",
+        "runtime": "python3.12",
+        "s3_bucket": "gumisofts",
+        "slim_handler": true,
+        "certificate_arn": "arn:aws:acm:eu-north-1:626635425063:certificate/94ff2845-f2f4-4e8d-9c14-00d02e62296d",
+        "domain": "apis.gumisofts.com",
+        "route53_enabled": false,
+        "extra_permissions": [
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "s3:GetObject",
+                    "s3:PutObject",
+                    "s3:ListBucket"
+                ],
+                "Resource": [
+                    "arn:aws:s3:::gumisofts",
+                    "arn:aws:s3:::gumisofts/*"
+                ]
+            }
+        ]
+    }
+}
