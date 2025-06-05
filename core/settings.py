@@ -27,7 +27,7 @@ SECRET_KEY = os.getenv(
 )
 
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
 
@@ -146,7 +146,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
+AWS_QUERYSTRING_AUTH = False
 
 AWS_CLOUD_ACCESS_KEY_ID = os.getenv("AWS_CLOUD_ACCESS_KEY_ID")
 AWS_CLOUD_SECRET_ACCESS_KEY = os.getenv("AWS_CLOUD_SECRET_ACCESS_KEY")
