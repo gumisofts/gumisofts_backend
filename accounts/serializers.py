@@ -7,9 +7,4 @@ class MessageSerializer(ModelSerializer):
     class Meta:
         exclude = []
         model = Message
-
-
-class MissionSerializer(ModelSerializer):
-    class Meta:
-        exclude = []
-        model = Mission
+        read_only_fields = ["is_read"]
