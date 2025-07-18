@@ -19,6 +19,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
 
+CORS_ALLOWED_ORIGINS = os.getenv(
+    "CORS_ALLOWED_ORIGINS", "http://localhost:4000,http://localhost:3000"
+).split(",")
+
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -27,17 +31,20 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "rest_framework",
-    # "drf_spectacular_sidecard",
     "corsheaders",
+    "rest_framework",
     "drf_spectacular_sidecar",
     "drf_spectacular",
     "clients",
+    "ckeditor",
     "accounts",
+    "projects",
     "jobs",
+    "blog",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -66,7 +73,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "core.wsgi.application"
-
 
 STORAGES = {
     "default": {
@@ -186,3 +192,25 @@ ADMINS = [
     ("Murad", "murad.dev@gumisofts.com"),
 ]
 MANAGERS = []
+
+
+# CKEditor Configuration
+CKEDITOR_CONFIGS = {
+    "default": {
+        "toolbar": "full",
+        "height": 300,
+        "width": "100%",
+        "extraPlugins": ",".join(
+            [
+                "uploadimage",
+                "div",
+                "autolink",
+                "autogrow",
+                "widget",
+                "lineutils",
+            ]
+        ),
+    },
+}
+
+CKEDITOR_UPLOAD_PATH = "uploads/"

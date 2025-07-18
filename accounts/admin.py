@@ -9,7 +9,7 @@ class UserAdmin(admin.ModelAdmin):
 
 
 class OrganizationAdmin(admin.ModelAdmin):
-    list_display = ["email", "phone", "address"]
+    list_display = ["email", "phone", "address", "company_name", "is_default"]
 
 
 @admin.action(
@@ -28,6 +28,19 @@ class MessageAdmin(admin.ModelAdmin):
     actions = [mark_messages_as_read]
 
 
+class CompanyStatsAdmin(admin.ModelAdmin):
+    list_display = [
+        "company_name",
+        "number_of_employees",
+        "number_of_projects_completed",
+        "client_satisfication_rate",
+        "number_of_happy_clients",
+        "number_of_years_in_business",
+        "company_location",
+    ]
+
+
+admin.site.register(CompanyStats, CompanyStatsAdmin)
 admin.site.register(User, UserAdmin)
 admin.site.register(Organization, OrganizationAdmin)
 admin.site.register(Message, MessageAdmin)

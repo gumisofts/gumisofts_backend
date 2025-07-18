@@ -1,5 +1,9 @@
+from django.urls import path
 from rest_framework.routers import DefaultRouter
 
-router = DefaultRouter()
+from projects.views import *
 
-urlpatterns = router.urls + []
+router = DefaultRouter()
+router.register(r"projects", ProjectsViewset, basename="projects")
+
+urlpatterns = router.urls

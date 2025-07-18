@@ -4,6 +4,6 @@ from clients.views import *
 
 router = DefaultRouter()
 
-router.register(r"testimonals", TestimonalViewset, basename="testimonals")
+router.register(r"testimonials", TestimonalViewset, basename="testimonials")
 
 urlpatterns = router.urls + []

@@ -10,6 +10,7 @@ urlpatterns = [
     path("jobs/", include("jobs.urls")),
     path("clients/", include("clients.urls")),
     path("projects/", include("projects.urls")),
+    path("blog/", include("blog.urls")),
     path("", SpectacularSwaggerView.as_view(), name="swagger"),
     path("schema", SpectacularAPIView.as_view(), name="schema"),
 ]

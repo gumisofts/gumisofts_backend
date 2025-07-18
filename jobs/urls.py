@@ -7,8 +7,8 @@ from .views import *
 
 router = DefaultRouter()
 
-router.register(r"jobs", JobViewSet)
-router.register(r"applications", ApplicationViewSet)
+router.register(r"jobs", JobViewset)
+# router.register(r"applications", ApplicationViewSet)
 urlpatterns = [
     path("", include(router.urls)),
 ]
