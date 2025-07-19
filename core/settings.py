@@ -2,6 +2,7 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
+from django.core.management.utils import get_random_secret_key
 from dotenv import load_dotenv
 
 load_dotenv(override=True)
@@ -10,9 +11,7 @@ load_dotenv(override=True)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECRET_KEY = os.getenv(
-    "SECRET_KEY", "django-insecure-6fgii6nn+_+--wgl^*fpp0+mfpi0ifkvc038urb&f5yr6b(!^y"
-)
+SECRET_KEY = os.getenv("SECRET_KEY", get_random_secret_key())
 
 
 DEBUG = True
