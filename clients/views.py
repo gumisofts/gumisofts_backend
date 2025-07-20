@@ -15,4 +15,9 @@ class ClientCount(APIView):
 
 class TestimonalViewset(ListModelMixin, GenericViewSet):
     serializer_class = TestimonalSerializer
-    queryset = Testimonal.objects.all()
+    queryset = Testimonal.objects.filter(is_active=True)
+
+
+class ServiceViewset(ListModelMixin, RetrieveModelMixin, GenericViewSet):
+    serializer_class = ServiceSerializer
+    queryset = Service.objects.all()

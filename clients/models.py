@@ -15,16 +15,26 @@ class Testimonal(models.Model):
     comment = models.TextField()
     avatar = models.ImageField(null=True, blank=True)
     position = models.CharField(max_length=255, blank=True, null=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
 
 
-# {
-#       id: 2,
-#       name: "Michael Chen",
-#       position: "CTO, InnovateLab",
-#       rating: 5,
-#       comment: "Outstanding work on our mobile application. The development process was smooth, and the final product was exactly what we envisioned. Highly recommended for any software development needs.",
-#       avatar: "/assets/avatar2.jpg"
-#     },
+class ServiceFeature(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
+class Service(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    short_description = models.CharField(max_length=255)
+    icon = models.CharField(max_length=255)
+    features = models.ManyToManyField(ServiceFeature)
+    category = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.title
