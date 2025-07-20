@@ -85,11 +85,23 @@ class JobApplication(models.Model):
             ("reviewed", "Reviewed"),
             ("shortlisted", "Shortlisted"),
             ("rejected", "Rejected"),
+            ("interview", "Interview Scheduled"),
+            ("offer", "Job Offer Extended"),
         ],
     )
 
     def __str__(self):
         return f"{self.full_name} - {self.job.title}"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Store the original status to detect changes
+        self._original_status = self.status
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        # Update the original status after saving
+        self._original_status = self.status
 
     class Meta:
         ordering = ["-applied_date"]

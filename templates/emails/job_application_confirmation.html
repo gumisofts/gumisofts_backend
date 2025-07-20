@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Confirmation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 650px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        .icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .confirmation-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+            border-left: 4px solid #4f46e5;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        .job-details {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .detail-row {
+            display: flex;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+        .detail-label {
+            font-weight: 600;
+            color: #475569;
+            min-width: 140px;
+            margin-right: 15px;
+        }
+        .detail-value {
+            color: #334155;
+            flex: 1;
+        }
+        .application-summary {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .next-steps {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        .btn-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+        }
+        .btn-secondary {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+        }
+        .footer {
+            background: #1f2937;
+            color: #d1d5db;
+            padding: 30px;
+            text-align: center;
+        }
+        .social-links {
+            margin: 20px 0;
+        }
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px;
+            background: #374151;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            width: 40px;
+            height: 40px;
+            line-height: 20px;
+        }
+        .social-links a:hover {
+            background: #4f46e5;
+        }
+        .contact-info {
+            color: #9ca3af;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                border-radius: 0;
+            }
+            .content {
+                padding: 20px;
+            }
+            .detail-row {
+                flex-direction: column;
+            }
+            .detail-label {
+                min-width: auto;
+                margin-bottom: 5px;
+            }
+            .btn {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="icon">✅</div>
+            <h1>Application Received!</h1>
+            <p style="margin: 10px 0 0; opacity: 0.9; font-size: 16px;">
+                Thank you for your interest in joining Gumisofts
+            </p>
+        </div>
+        
+        <div class="content">
+            <div class="confirmation-box">
+                <h3 style="margin-top: 0; color: #4f46e5;">🎉 Your application has been successfully submitted!</h3>
+                <p style="margin-bottom: 0;">
+                    Dear <strong>{{ applicant_name }}</strong>, we have received your application and our hiring team will review it carefully.
+                </p>
+            </div>
+            
+            <!-- Job Details -->
+            <div class="job-details">
+                <h3 style="margin-top: 0; color: #334155;">📋 Position Details</h3>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Position:</span>
+                    <span class="detail-value"><strong>{{ job_title }}</strong></span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Job ID:</span>
+                    <span class="detail-value">{{ job_id }}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Department:</span>
+                    <span class="detail-value">{{ job_category }}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Employment Type:</span>
+                    <span class="detail-value">{{ job_type }}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Location:</span>
+                    <span class="detail-value">{{ job_location }}</span>
+                </div>
+                
+                {% if job_salary %}
+                <div class="detail-row">
+                    <span class="detail-label">Salary Range:</span>
+                    <span class="detail-value">{{ job_salary }}</span>
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Application Summary -->
+            <div class="application-summary">
+                <h3 style="margin-top: 0; color: #166534;">📄 Your Application Summary</h3>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Full Name:</span>
+                    <span class="detail-value">{{ applicant_name }}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Email:</span>
+                    <span class="detail-value">{{ applicant_email }}</span>
+                </div>
+                
+                {% if linkedin_profile %}
+                <div class="detail-row">
+                    <span class="detail-label">LinkedIn:</span>
+                    <span class="detail-value"><a href="{{ linkedin_profile }}" style="color: #0066cc;">{{ linkedin_profile }}</a></span>
+                </div>
+                {% endif %}
+                
+                <div class="detail-row">
+                    <span class="detail-label">Resume:</span>
+                    <span class="detail-value">✅ Uploaded successfully</span>
+                </div>
+                
+                {% if cover_letter %}
+                <div class="detail-row">
+                    <span class="detail-label">Cover Letter:</span>
+                    <span class="detail-value">✅ Included</span>
+                </div>
+                {% endif %}
+                
+                <div class="detail-row">
+                    <span class="detail-label">Application Date:</span>
+                    <span class="detail-value">{{ application_date }}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Application ID:</span>
+                    <span class="detail-value">#{{ application_id }}</span>
+                </div>
+            </div>
+            
+            <!-- Next Steps -->
+            <div class="next-steps">
+                <h3 style="margin-top: 0; color: #92400e;">🚀 What happens next?</h3>
+                <ul style="margin: 15px 0; padding-left: 20px; color: #78350f;">
+                    <li><strong>Review Process:</strong> Our hiring team will carefully review your application within 3-5 business days.</li>
+                    <li><strong>Initial Screening:</strong> If your profile matches our requirements, we'll contact you for an initial phone/video screening.</li>
+                    <li><strong>Technical Assessment:</strong> Depending on the role, you may be asked to complete a technical assessment or coding challenge.</li>
+                    <li><strong>Interview Process:</strong> Selected candidates will be invited for interviews with our team members.</li>
+                    <li><strong>Final Decision:</strong> We'll notify you of our decision via email regardless of the outcome.</li>
+                </ul>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="btn-container">
+                <a href="{{ job_description_url }}" class="btn">View Job Description</a>
+                <a href="{{ company_careers_url }}" class="btn btn-secondary">View Other Openings</a>
+            </div>
+            
+            <!-- Tips Section -->
+            <div style="background: #f1f5f9; border-radius: 10px; padding: 20px; margin: 25px 0;">
+                <h4 style="margin-top: 0; color: #334155;">💡 Pro Tips while you wait:</h4>
+                <ul style="color: #475569; line-height: 1.8;">
+                    <li>Keep an eye on your email (including spam folder) for updates</li>
+                    <li>Connect with us on social media to stay updated on company news</li>
+                    <li>Explore our blog and projects to learn more about our work culture</li>
+                    <li>Feel free to reach out if you have any questions about the process</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="social-links">
+                <a href="{{ linkedin_url }}" title="LinkedIn">💼</a>
+                <a href="{{ twitter_url }}" title="Twitter">🐦</a>
+                <a href="{{ github_url }}" title="GitHub">⚡</a>
+            </div>
+            
+            <p style="margin: 20px 0 10px;">
+                <strong>Gumisofts</strong><br>
+                Building innovative software solutions
+            </p>
+            
+            <div class="contact-info">
+                <p>Questions about your application?<br>
+                Contact us at <a href="mailto:careers@gumisofts.com" style="color: #60a5fa;">careers@gumisofts.com</a></p>
+                
+                <p style="margin-top: 20px; font-size: 12px;">
+                    This is an automated message. Please do not reply to this email.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

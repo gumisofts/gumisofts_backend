@@ -13,12 +13,24 @@ class Topic(models.Model):
 
 
 class NewsletterSubscriber(models.Model):
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
+    is_active = models.BooleanField(default=True)
+    unsubscribe_token = models.CharField(max_length=100, unique=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.email
+
+    def save(self, *args, **kwargs):
+        if not self.unsubscribe_token:
+            import uuid
+
+            self.unsubscribe_token = str(uuid.uuid4())
+        super().save(*args, **kwargs)
+
+    class Meta:
+        ordering = ["-created_at"]
 
 
 class Author(models.Model):

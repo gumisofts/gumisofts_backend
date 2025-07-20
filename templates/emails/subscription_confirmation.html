@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter Subscription Confirmed</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .welcome-message {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .confirmation-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .btn-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            border-top: 1px solid #eee;
+        }
+        .unsubscribe {
+            margin-top: 20px;
+            font-size: 12px;
+        }
+        .unsubscribe a {
+            color: #666;
+            text-decoration: underline;
+        }
+        .icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="icon">✉️</div>
+            <h1>Welcome to Gumisofts Newsletter!</h1>
+        </div>
+        
+        <div class="content">
+            <div class="welcome-message">
+                Hi there! 👋
+            </div>
+            
+            <p>Thank you for subscribing to the <strong>Gumisofts Newsletter</strong>! We're excited to have you join our community of developers, tech enthusiasts, and innovators.</p>
+            
+            <div class="confirmation-box">
+                <strong>✅ Your subscription has been confirmed!</strong><br>
+                Email: <strong>{{ email }}</strong><br>
+                Subscribed on: <strong>{{ subscription_date }}</strong>
+            </div>
+            
+            <p>What you can expect from us:</p>
+            <ul style="color: #555; line-height: 1.8;">
+                <li>🚀 Latest updates on our projects and services</li>
+                <li>💡 Tech insights and development tips</li>
+                <li>📢 Exclusive announcements and early access</li>
+                <li>🎯 Industry trends and best practices</li>
+            </ul>
+            
+            <div class="btn-container">
+                <a href="{{ website_url }}" class="btn">Visit Our Website</a>
+            </div>
+            
+            <p style="color: #666; font-style: italic;">
+                We respect your inbox and promise to send only valuable content. No spam, ever!
+            </p>
+        </div>
+        
+        <div class="footer">
+            <p><strong>Gumisofts</strong><br>
+            Building innovative software solutions</p>
+            
+            <p>Follow us on social media for more updates!</p>
+            
+            <div class="unsubscribe">
+                <p>Don't want to receive these emails anymore?<br>
+                <a href="{{ unsubscribe_url }}">Unsubscribe here</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

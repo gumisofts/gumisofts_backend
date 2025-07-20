@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ subject }}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 650px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .newsletter-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 20px 0 10px;
+            line-height: 1.2;
+        }
+        .newsletter-date {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 0;
+        }
+        .content {
+            padding: 40px;
+        }
+        .featured-post {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 5px solid #667eea;
+        }
+        .featured-badge {
+            background: #667eea;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 5px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        .post-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0 0 15px 0;
+            color: #333;
+        }
+        .post-excerpt {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .read-more {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .read-more:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+        .recent-posts {
+            margin-top: 40px;
+        }
+        .section-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        .post-item {
+            display: flex;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #f1f3f4;
+        }
+        .post-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .post-image {
+            width: 120px;
+            height: 80px;
+            border-radius: 8px;
+            margin-right: 20px;
+            object-fit: cover;
+            background: #f8f9fa;
+        }
+        .post-content {
+            flex: 1;
+        }
+        .post-meta {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        .post-item .post-title {
+            font-size: 18px;
+            margin: 0 0 10px 0;
+        }
+        .post-item .post-title a {
+            color: #333;
+            text-decoration: none;
+        }
+        .post-item .post-title a:hover {
+            color: #667eea;
+        }
+        .post-item .post-excerpt {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+            line-height: 1.5;
+        }
+        .stats-section {
+            background: #f8f9fa;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stats-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+            margin: 10px;
+        }
+        .stat-number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .footer {
+            background: #2d3748;
+            color: #cbd5e0;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        .footer-links a {
+            color: #cbd5e0;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px;
+        }
+        .footer-links a:hover {
+            color: white;
+        }
+        .social-links {
+            margin: 20px 0;
+        }
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px;
+            background: #4a5568;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            width: 40px;
+            height: 40px;
+            line-height: 20px;
+        }
+        .social-links a:hover {
+            background: #667eea;
+        }
+        .unsubscribe {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #a0aec0;
+        }
+        .unsubscribe a {
+            color: #a0aec0;
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                border-radius: 0;
+            }
+            .content {
+                padding: 20px;
+            }
+            .post-item {
+                flex-direction: column;
+            }
+            .post-image {
+                width: 100%;
+                height: 150px;
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            .stats-grid {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">GUMISOFTS</div>
+            <h1 class="newsletter-title">{{ subject }}</h1>
+            <p class="newsletter-date">{{ newsletter_date }}</p>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Featured Post Section -->
+            {% if featured_post %}
+            <div class="featured-post">
+                <span class="featured-badge">Featured</span>
+                <h2 class="post-title">{{ featured_post.title }}</h2>
+                <p class="post-excerpt">{{ featured_post.excerpt }}</p>
+                <a href="{{ featured_post.url }}" class="read-more">Read Full Article</a>
+            </div>
+            {% endif %}
+            
+            <!-- Newsletter Content -->
+            {% if newsletter_content %}
+            <div style="margin: 30px 0;">
+                {{ newsletter_content|safe }}
+            </div>
+            {% endif %}
+            
+            <!-- Recent Posts Section -->
+            {% if recent_posts %}
+            <div class="recent-posts">
+                <h2 class="section-title">📚 Recent Articles</h2>
+                {% for post in recent_posts %}
+                <div class="post-item">
+                    {% if post.image %}
+                    <img src="{{ post.image }}" alt="{{ post.title }}" class="post-image">
+                    {% else %}
+                    <div class="post-image" style="display: flex; align-items: center; justify-content: center; background: #f8f9fa; color: #adb5bd;">
+                        📖
+                    </div>
+                    {% endif %}
+                    <div class="post-content">
+                        <div class="post-meta">{{ post.category }} • {{ post.read_time }} min read • {{ post.published_date }}</div>
+                        <h3 class="post-title">
+                            <a href="{{ post.url }}">{{ post.title }}</a>
+                        </h3>
+                        <p class="post-excerpt">{{ post.excerpt }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            <!-- Blog Stats Section -->
+            {% if show_stats %}
+            <div class="stats-section">
+                <h3 style="margin-top: 0; color: #333;">Our Community Growth</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">{{ total_posts|default:"0" }}</span>
+                        <span class="stat-label">Articles</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">{{ total_subscribers|default:"0" }}</span>
+                        <span class="stat-label">Subscribers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">{{ total_views|default:"0" }}</span>
+                        <span class="stat-label">Total Views</span>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            
+            <!-- Call to Action -->
+            <div style="text-align: center; margin: 40px 0;">
+                <p style="font-size: 18px; color: #333; margin-bottom: 20px;">
+                    💡 Have a project idea? Let's talk!
+                </p>
+                <a href="{{ contact_url }}" class="read-more">Get In Touch</a>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-links">
+                <a href="{{ website_url }}">Website</a>
+                <a href="{{ blog_url }}">Blog</a>
+                <a href="{{ portfolio_url }}">Portfolio</a>
+                <a href="{{ contact_url }}">Contact</a>
+            </div>
+            
+            <div class="social-links">
+                <a href="{{ linkedin_url }}" title="LinkedIn">💼</a>
+                <a href="{{ twitter_url }}" title="Twitter">🐦</a>
+                <a href="{{ github_url }}" title="GitHub">⚡</a>
+            </div>
+            
+            <p style="margin: 20px 0 10px;">
+                <strong>Gumisofts</strong><br>
+                Building innovative software solutions
+            </p>
+            
+            <div class="unsubscribe">
+                <p>You're receiving this because you subscribed to our newsletter.<br>
+                <a href="{{ unsubscribe_url }}">Unsubscribe</a> | <a href="{{ preferences_url }}">Update Preferences</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

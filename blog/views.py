@@ -23,6 +23,132 @@ from .serializers import (
 class NewsletterSubscriberViewset(CreateModelMixin, GenericViewSet):
     serializer_class = NewsletterSubscriberSerializer
 
+    def create(self, request, *args, **kwargs):
+        """Override create to handle duplicate subscriptions gracefully"""
+        email = request.data.get("email")
+        if email:
+            # Check if user is already subscribed
+            existing_subscriber = NewsletterSubscriber.objects.filter(
+                email=email
+            ).first()
+            if existing_subscriber:
+                if existing_subscriber.is_active:
+                    return Response(
+                        {
+                            "message": "You are already subscribed to our newsletter!",
+                            "status": "already_subscribed",
+                        },
+                        status=status.HTTP_200_OK,
+                    )
+                else:
+                    # Reactivate subscription
+                    existing_subscriber.is_active = True
+                    existing_subscriber.save()
+                    return Response(
+                        {
+                            "message": "Your subscription has been reactivated!",
+                            "status": "reactivated",
+                        },
+                        status=status.HTTP_200_OK,
+                    )
+
+        # Create new subscription
+        response = super().create(request, *args, **kwargs)
+        if response.status_code == 201:
+            response.data = {
+                "message": "Thank you for subscribing! Please check your email for confirmation.",
+                "status": "subscribed",
+            }
+        return response
+
+    @action(detail=False, methods=["post"])
+    def send_newsletter(self, request):
+        """Send newsletter to all active subscribers"""
+        from core.emails import send_newsletter_to_subscribers
+
+        subject = request.data.get("subject", "")
+        content = request.data.get("content", "")
+
+        if not subject:
+            return Response(
+                {"error": "Subject is required"}, status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Get featured post if provided
+        featured_post_id = request.data.get("featured_post_id")
+        featured_post = None
+        if featured_post_id:
+            try:
+                blog_post = BlogPost.objects.get(
+                    id=featured_post_id, status="published"
+                )
+                featured_post = {
+                    "title": blog_post.title,
+                    "excerpt": blog_post.excerpt,
+                    "url": f"https://gumisofts.com/blog/{blog_post.slug}/",  # Update with actual URL
+                }
+            except BlogPost.DoesNotExist:
+                pass
+
+        # Get recent posts
+        recent_posts_data = []
+        recent_posts = BlogPost.objects.filter(status="published").order_by(
+            "-published_at"
+        )[:5]
+        for post in recent_posts:
+            recent_posts_data.append(
+                {
+                    "title": post.title,
+                    "excerpt": post.excerpt,
+                    "url": f"https://gumisofts.com/blog/{post.slug}/",  # Update with actual URL
+                    "category": (
+                        post.category.name if post.category else "Uncategorized"
+                    ),
+                    "read_time": post.read_time,
+                    "published_date": (
+                        post.published_at.strftime("%B %d, %Y")
+                        if post.published_at
+                        else ""
+                    ),
+                    "image": post.image.url if post.image else None,
+                }
+            )
+
+        try:
+            result = send_newsletter_to_subscribers(
+                subject=subject,
+                newsletter_content=content,
+                featured_post=featured_post,
+                recent_posts=recent_posts_data,
+                show_stats=request.data.get("show_stats", True),
+            )
+
+            if result:
+                subscriber_count = NewsletterSubscriber.objects.filter(
+                    is_active=True
+                ).count()
+                return Response(
+                    {
+                        "message": f"Newsletter sent successfully to {subscriber_count} subscribers!",
+                        "status": "sent",
+                        "subscriber_count": subscriber_count,
+                    }
+                )
+            else:
+                return Response(
+                    {
+                        "message": "No active subscribers found",
+                        "status": "no_subscribers",
+                    },
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+
+        except Exception as e:
+            return Response(
+                {"error": f"Failed to send newsletter: {str(e)}", "status": "error"},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
+
 
 class BlogPostViewSet(ModelViewSet):
     queryset = BlogPost.objects.select_related("author", "category").prefetch_related(

@@ -1,0 +1,172 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_modify %}
+
+{% block title %}{{ title }} | {% trans 'Django site admin' %}{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<style>
+    .form-row {
+        margin-bottom: 15px;
+    }
+    .form-row label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .form-row input, .form-row select, .form-row textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+    .helptext {
+        font-size: 12px;
+        color: #666;
+        margin-top: 5px;
+    }
+    .application-info {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .submit-row {
+        margin-top: 20px;
+        padding: 15px 0;
+        border-top: 1px solid #ddd;
+    }
+    .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+    .btn-primary {
+        background-color: #007cba;
+        color: white;
+    }
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+
+<div class="application-info">
+    <h3>📋 Application Details</h3>
+    <p><strong>Candidate:</strong> {{ application.full_name }}</p>
+    <p><strong>Email:</strong> {{ application.email }}</p>
+    <p><strong>Position:</strong> {{ application.job.title }}</p>
+    <p><strong>Applied:</strong> {{ application.applied_date|date:"F d, Y" }}</p>
+    {% if application.linkedin %}
+    <p><strong>LinkedIn:</strong> <a href="{{ application.linkedin }}" target="_blank">{{ application.linkedin }}</a></p>
+    {% endif %}
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    
+    <fieldset class="module aligned">
+        <h2>📅 Interview Schedule</h2>
+        
+        <div class="form-row">
+            <label for="{{ form.date.id_for_label }}">{{ form.date.label }}:</label>
+            {{ form.date }}
+            {% if form.date.help_text %}
+                <div class="helptext">{{ form.date.help_text }}</div>
+            {% endif %}
+            {% if form.date.errors %}
+                <div class="errorlist">{{ form.date.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-row">
+            <label for="{{ form.time.id_for_label }}">{{ form.time.label }}:</label>
+            {{ form.time }}
+            {% if form.time.help_text %}
+                <div class="helptext">{{ form.time.help_text }}</div>
+            {% endif %}
+            {% if form.time.errors %}
+                <div class="errorlist">{{ form.time.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-row">
+            <label for="{{ form.duration.id_for_label }}">{{ form.duration.label }}:</label>
+            {{ form.duration }}
+            {% if form.duration.help_text %}
+                <div class="helptext">{{ form.duration.help_text }}</div>
+            {% endif %}
+            {% if form.duration.errors %}
+                <div class="errorlist">{{ form.duration.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-row">
+            <label for="{{ form.type.id_for_label }}">{{ form.type.label }}:</label>
+            {{ form.type }}
+            {% if form.type.help_text %}
+                <div class="helptext">{{ form.type.help_text }}</div>
+            {% endif %}
+            {% if form.type.errors %}
+                <div class="errorlist">{{ form.type.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-row">
+            <label for="{{ form.location.id_for_label }}">{{ form.location.label }}:</label>
+            {{ form.location }}
+            {% if form.location.help_text %}
+                <div class="helptext">{{ form.location.help_text }}</div>
+            {% endif %}
+            {% if form.location.errors %}
+                <div class="errorlist">{{ form.location.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-row">
+            <label for="{{ form.interviewer.id_for_label }}">{{ form.interviewer.label }}:</label>
+            {{ form.interviewer }}
+            {% if form.interviewer.help_text %}
+                <div class="helptext">{{ form.interviewer.help_text }}</div>
+            {% endif %}
+            {% if form.interviewer.errors %}
+                <div class="errorlist">{{ form.interviewer.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-row">
+            <label for="{{ form.personal_message.id_for_label }}">{{ form.personal_message.label }}:</label>
+            {{ form.personal_message }}
+            {% if form.personal_message.help_text %}
+                <div class="helptext">{{ form.personal_message.help_text }}</div>
+            {% endif %}
+            {% if form.personal_message.errors %}
+                <div class="errorlist">{{ form.personal_message.errors }}</div>
+            {% endif %}
+        </div>
+    </fieldset>
+    
+    <div class="submit-row">
+        <input type="submit" value="📅 Schedule Interview & Send Email" class="btn btn-primary" />
+        <a href="{% url 'admin:jobs_jobapplication_changelist' %}" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+
+<div style="margin-top: 30px; padding: 15px; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 5px;">
+    <h4>📧 What happens next:</h4>
+    <ul>
+        <li>The candidate's status will be updated to "Interview Scheduled"</li>
+        <li>An email will be sent to the candidate with all interview details</li>
+        <li>The candidate will receive a professional email template with instructions</li>
+        <li>You can track the status in the job applications list</li>
+    </ul>
+</div>
+
+{% endblock %} 

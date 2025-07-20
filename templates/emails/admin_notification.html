@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Newsletter Subscription</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        .content {
+            padding: 30px;
+        }
+        .notification-box {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .subscriber-info {
+            background: #f8f9fa;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .info-row {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .info-label {
+            font-weight: 600;
+            color: #495057;
+            min-width: 120px;
+        }
+        .info-value {
+            color: #333;
+            font-weight: 500;
+        }
+        .stats-section {
+            background: #e9ecef;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stats-grid {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #28a745;
+            display: block;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .action-buttons {
+            text-align: center;
+            margin: 25px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            margin: 0 10px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: #28a745;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #6c757d;
+            font-size: 14px;
+            border-top: 1px solid #e9ecef;
+        }
+        .timestamp {
+            color: #6c757d;
+            font-size: 14px;
+            font-style: italic;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                border-radius: 0;
+            }
+            .content {
+                padding: 20px;
+            }
+            .stats-grid {
+                flex-direction: column;
+            }
+            .stat-item {
+                margin-bottom: 15px;
+            }
+            .btn {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="icon">🔔</div>
+            <h1>New Newsletter Subscription</h1>
+        </div>
+        
+        <div class="content">
+            <div class="notification-box">
+                <strong>📈 Great news!</strong> A new user has subscribed to the Gumisofts newsletter.
+            </div>
+            
+            <div class="subscriber-info">
+                <h3 style="margin-top: 0; color: #28a745;">Subscriber Details</h3>
+                
+                <div class="info-row">
+                    <span class="info-label">📧 Email:</span>
+                    <span class="info-value">{{ subscriber_email }}</span>
+                </div>
+                
+                <div class="info-row">
+                    <span class="info-label">📅 Date:</span>
+                    <span class="info-value">{{ subscription_date }}</span>
+                </div>
+                
+                <div class="info-row">
+                    <span class="info-label">⏰ Time:</span>
+                    <span class="info-value">{{ subscription_time }}</span>
+                </div>
+                
+                <div class="info-row">
+                    <span class="info-label">🆔 Subscriber ID:</span>
+                    <span class="info-value">#{{ subscriber_id }}</span>
+                </div>
+            </div>
+            
+            <!-- Current Statistics -->
+            <div class="stats-section">
+                <h4 style="margin-top: 0; color: #333;">Current Newsletter Statistics</h4>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">{{ total_subscribers }}</span>
+                        <span class="stat-label">Total Subscribers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">{{ new_today }}</span>
+                        <span class="stat-label">New Today</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">{{ new_this_week }}</span>
+                        <span class="stat-label">This Week</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">{{ new_this_month }}</span>
+                        <span class="stat-label">This Month</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <a href="{{ admin_subscribers_url }}" class="btn btn-primary">View All Subscribers</a>
+                <a href="{{ create_newsletter_url }}" class="btn btn-secondary">Create Newsletter</a>
+            </div>
+            
+            <!-- Additional Info -->
+            <div style="background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 8px; padding: 15px; margin: 20px 0;">
+                <strong>💡 Quick Actions:</strong>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li>Review subscriber engagement metrics</li>
+                    <li>Prepare content for the next newsletter</li>
+                    <li>Check if any automated welcome series should be triggered</li>
+                </ul>
+            </div>
+            
+            <div class="timestamp">
+                <p>📊 This notification was generated automatically at {{ notification_time }}</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>Gumisofts Admin Panel</strong></p>
+            <p>Newsletter Management System</p>
+        </div>
+    </div>
+</body>
+</html> 

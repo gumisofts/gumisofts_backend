@@ -1,0 +1,158 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_modify %}
+
+{% block title %}{{ title }} | {% trans 'Django site admin' %}{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<style>
+    .form-row {
+        margin-bottom: 15px;
+    }
+    .form-row label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .form-row input, .form-row select, .form-row textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+    .helptext {
+        font-size: 12px;
+        color: #666;
+        margin-top: 5px;
+    }
+    .application-info {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .offer-info {
+        background: #d1fae5;
+        border: 1px solid #10b981;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .submit-row {
+        margin-top: 20px;
+        padding: 15px 0;
+        border-top: 1px solid #ddd;
+    }
+    .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+    .btn-primary {
+        background-color: #007cba;
+        color: white;
+    }
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+    .btn-success {
+        background-color: #28a745;
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+
+<div class="application-info">
+    <h3>📋 Application Details</h3>
+    <p><strong>Candidate:</strong> {{ application.full_name }}</p>
+    <p><strong>Email:</strong> {{ application.email }}</p>
+    <p><strong>Position:</strong> {{ application.job.title }}</p>
+    <p><strong>Department:</strong> {{ application.job.category }}</p>
+    <p><strong>Location:</strong> {{ application.job.location }}</p>
+    <p><strong>Applied:</strong> {{ application.applied_date|date:"F d, Y" }}</p>
+    {% if application.linkedin %}
+    <p><strong>LinkedIn:</strong> <a href="{{ application.linkedin }}" target="_blank">{{ application.linkedin }}</a></p>
+    {% endif %}
+</div>
+
+<div class="offer-info">
+    <h3>🎉 Extending Job Offer</h3>
+    <p>You are about to extend a job offer to <strong>{{ application.full_name }}</strong> for the <strong>{{ application.job.title }}</strong> position.</p>
+    <p>This will automatically update their status and send them a professional job offer email.</p>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    
+    <fieldset class="module aligned">
+        <h2>📄 Offer Details</h2>
+        
+        <div class="form-row">
+            <label for="{{ form.offer_link.id_for_label }}">{{ form.offer_link.label }}:</label>
+            {{ form.offer_link }}
+            {% if form.offer_link.help_text %}
+                <div class="helptext">{{ form.offer_link.help_text }}</div>
+            {% endif %}
+            {% if form.offer_link.errors %}
+                <div class="errorlist">{{ form.offer_link.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-row">
+            <label for="{{ form.deadline.id_for_label }}">{{ form.deadline.label }}:</label>
+            {{ form.deadline }}
+            {% if form.deadline.help_text %}
+                <div class="helptext">{{ form.deadline.help_text }}</div>
+            {% endif %}
+            {% if form.deadline.errors %}
+                <div class="errorlist">{{ form.deadline.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-row">
+            <label for="{{ form.personal_message.id_for_label }}">{{ form.personal_message.label }}:</label>
+            {{ form.personal_message }}
+            {% if form.personal_message.help_text %}
+                <div class="helptext">{{ form.personal_message.help_text }}</div>
+            {% endif %}
+            {% if form.personal_message.errors %}
+                <div class="errorlist">{{ form.personal_message.errors }}</div>
+            {% endif %}
+        </div>
+    </fieldset>
+    
+    <div class="submit-row">
+        <input type="submit" value="🎉 Extend Job Offer & Send Email" class="btn btn-success" />
+        <a href="{% url 'admin:jobs_jobapplication_changelist' %}" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+
+<div style="margin-top: 30px; padding: 15px; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 5px;">
+    <h4>📧 What happens next:</h4>
+    <ul>
+        <li>The candidate's status will be updated to "Job Offer Extended"</li>
+        <li>A congratulatory email will be sent to the candidate</li>
+        <li>The email will include offer details and next steps</li>
+        <li>The candidate will be able to respond within the specified deadline</li>
+        <li>You can track their response in the job applications list</li>
+    </ul>
+</div>
+
+<div style="margin-top: 20px; padding: 15px; background: #e6f3ff; border: 1px solid #007cba; border-radius: 5px;">
+    <h4>💡 Pro Tips:</h4>
+    <ul>
+        <li><strong>Offer Link:</strong> Consider linking to a detailed offer document with salary, benefits, and start date</li>
+        <li><strong>Deadline:</strong> Typically give candidates 1-2 weeks to respond to job offers</li>
+        <li><strong>Personal Message:</strong> A personal touch from the hiring manager makes the offer more meaningful</li>
+        <li><strong>Follow-up:</strong> Plan to follow up via phone call or email after sending the offer</li>
+    </ul>
+</div>
+
+{% endblock %} 
