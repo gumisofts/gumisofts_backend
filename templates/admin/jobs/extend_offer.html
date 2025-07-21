@@ -63,6 +63,99 @@
         background-color: #28a745;
         color: white;
     }
+    
+    /* Dark Mode Support */
+    @media (prefers-color-scheme: dark) {
+        .form-row input, .form-row select, .form-row textarea {
+            background-color: #374151 !important;
+            border: 1px solid #4b5563 !important;
+            color: #f9fafb !important;
+        }
+        
+        .form-row label {
+            color: #f9fafb !important;
+        }
+        
+        .helptext {
+            color: #9ca3af !important;
+        }
+        
+        .application-info {
+            background: #374151 !important;
+            border: 1px solid #4b5563 !important;
+            color: #f9fafb !important;
+        }
+        
+        .application-info h3 {
+            color: #f9fafb !important;
+        }
+        
+        .application-info p {
+            color: #d1d5db !important;
+        }
+        
+        .application-info a {
+            color: #60a5fa !important;
+        }
+        
+        .offer-info {
+            background: #065f46 !important;
+            border: 1px solid #10b981 !important;
+            color: #d1fae5 !important;
+        }
+        
+        .offer-info h3 {
+            color: #86efac !important;
+        }
+        
+        .offer-info p {
+            color: #d1fae5 !important;
+        }
+        
+        .submit-row {
+            border-top: 1px solid #4b5563 !important;
+        }
+        
+        .btn-primary {
+            background-color: #3b82f6 !important;
+        }
+        
+        .btn-secondary {
+            background-color: #4b5563 !important;
+        }
+        
+        .btn-success {
+            background-color: #059669 !important;
+        }
+        
+        .tips-section {
+            background: #374151 !important;
+            border: 1px solid #60a5fa !important;
+            color: #e2e8f0 !important;
+        }
+        
+        .tips-section h4 {
+            color: #93c5fd !important;
+        }
+        
+        .tips-section ul {
+            color: #d1d5db !important;
+        }
+        
+        .what-happens-section {
+            background: #451a03 !important;
+            border: 1px solid #f59e0b !important;
+            color: #fef3c7 !important;
+        }
+        
+        .what-happens-section h4 {
+            color: #fbbf24 !important;
+        }
+        
+        .what-happens-section ul {
+            color: #fef3c7 !important;
+        }
+    }
 </style>
 {% endblock %}
 
@@ -134,7 +227,7 @@
     </div>
 </form>
 
-<div style="margin-top: 30px; padding: 15px; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 5px;">
+<div class="what-happens-section" style="margin-top: 30px; padding: 15px; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 5px;">
     <h4>📧 What happens next:</h4>
     <ul>
         <li>The candidate's status will be updated to "Job Offer Extended"</li>
@@ -145,7 +238,7 @@
     </ul>
 </div>
 
-<div style="margin-top: 20px; padding: 15px; background: #e6f3ff; border: 1px solid #007cba; border-radius: 5px;">
+<div class="tips-section" style="margin-top: 20px; padding: 15px; background: #e6f3ff; border: 1px solid #007cba; border-radius: 5px;">
     <h4>💡 Pro Tips:</h4>
     <ul>
         <li><strong>Offer Link:</strong> Consider linking to a detailed offer document with salary, benefits, and start date</li>

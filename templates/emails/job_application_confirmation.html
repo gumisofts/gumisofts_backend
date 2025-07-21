@@ -132,6 +132,128 @@
             font-size: 14px;
             margin-top: 20px;
         }
+        .tips-section {
+            background: #f1f5f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        .tips-section h4 {
+            margin-top: 0;
+            color: #334155;
+        }
+        .tips-section ul {
+            color: #475569;
+            line-height: 1.8;
+        }
+        
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #0f172a !important;
+                color: #e2e8f0 !important;
+            }
+            
+            .container {
+                background: #1e293b !important;
+                box-shadow: 0 4px 25px rgba(0,0,0,0.3) !important;
+            }
+            
+            .content {
+                color: #e2e8f0 !important;
+            }
+            
+            .confirmation-box {
+                background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%) !important;
+                color: #e2e8f0 !important;
+            }
+            
+            .confirmation-box h3 {
+                color: #93c5fd !important;
+            }
+            
+            .job-details {
+                background: #334155 !important;
+                border: 1px solid #475569 !important;
+                color: #e2e8f0 !important;
+            }
+            
+            .job-details h3 {
+                color: #cbd5e1 !important;
+            }
+            
+            .detail-label {
+                color: #cbd5e1 !important;
+            }
+            
+            .detail-value {
+                color: #e2e8f0 !important;
+            }
+            
+            .application-summary {
+                background: #14532d !important;
+                border: 1px solid #166534 !important;
+                color: #e2e8f0 !important;
+            }
+            
+            .application-summary h3 {
+                color: #86efac !important;
+            }
+            
+            .next-steps {
+                background: #451a03 !important;
+                border-left: 4px solid #f59e0b !important;
+                color: #fef3c7 !important;
+            }
+            
+            .next-steps h3 {
+                color: #fbbf24 !important;
+            }
+            
+            .next-steps ul {
+                color: #fef3c7 !important;
+            }
+            
+            .tips-section {
+                background: #374151 !important;
+                color: #e2e8f0 !important;
+            }
+            
+            .tips-section h4 {
+                color: #f1f5f9 !important;
+            }
+            
+            .tips-section ul {
+                color: #d1d5db !important;
+            }
+            
+            .footer {
+                background: #111827 !important;
+                color: #d1d5db !important;
+            }
+            
+            .social-links a {
+                background: #1f2937 !important;
+                color: #e5e7eb !important;
+            }
+            
+            .social-links a:hover {
+                background: #4f46e5 !important;
+            }
+            
+            .contact-info {
+                color: #9ca3af !important;
+            }
+            
+            .contact-info a {
+                color: #93c5fd !important;
+            }
+            
+            .detail-value a {
+                color: #60a5fa !important;
+            }
+        }
+        
         @media (max-width: 600px) {
             .container {
                 margin: 10px;
@@ -272,9 +394,9 @@
             </div>
             
             <!-- Tips Section -->
-            <div style="background: #f1f5f9; border-radius: 10px; padding: 20px; margin: 25px 0;">
-                <h4 style="margin-top: 0; color: #334155;">💡 Pro Tips while you wait:</h4>
-                <ul style="color: #475569; line-height: 1.8;">
+            <div class="tips-section">
+                <h4>💡 Pro Tips while you wait:</h4>
+                <ul>
                     <li>Keep an eye on your email (including spam folder) for updates</li>
                     <li>Connect with us on social media to stay updated on company news</li>
                     <li>Explore our blog and projects to learn more about our work culture</li>
@@ -284,11 +406,6 @@
         </div>
         
         <div class="footer">
-            <div class="social-links">
-                <a href="{{ linkedin_url }}" title="LinkedIn">💼</a>
-                <a href="{{ twitter_url }}" title="Twitter">🐦</a>
-                <a href="{{ github_url }}" title="GitHub">⚡</a>
-            </div>
             
             <p style="margin: 20px 0 10px;">
                 <strong>Gumisofts</strong><br>

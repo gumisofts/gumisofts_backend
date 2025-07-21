@@ -247,7 +247,7 @@ def send_job_application_confirmation(application):
         "application_id": application.id,
         "linkedin_profile": application.linkedin,
         "cover_letter": bool(application.cover_letter),
-        "job_description_url": f"https://gumisofts.com/jobs/{job.id}/",  # Update with actual URL
+        "job_description_url": f"https://gumisofts.com/careers/{job.id}/",  # Update with actual URL
         "company_careers_url": "https://gumisofts.com/careers/",
         "linkedin_url": "https://linkedin.com/company/gumisofts",
         "twitter_url": "https://twitter.com/gumisofts",
@@ -496,4 +496,5 @@ Gumisofts Hiring Team
 
 def send_test_email(to_email):
     """Send a test email"""
-    send_email_to_admins("Test Email From Gumisofts", "This Only Test Email")
+    tt = send_email_to_admins("Test Email From Gumisofts", "This Only Test Email")
+    print(f"Test email sent to {to_email}: {tt}")

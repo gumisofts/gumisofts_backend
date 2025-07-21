@@ -217,6 +217,105 @@
             color: #a0aec0;
             text-decoration: underline;
         }
+        
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #0f172a !important;
+                color: #e2e8f0 !important;
+            }
+            
+            .container {
+                background: #1e293b !important;
+                box-shadow: 0 4px 25px rgba(0,0,0,0.3) !important;
+            }
+            
+            .content {
+                color: #e2e8f0 !important;
+            }
+            
+            .featured-post {
+                background: linear-gradient(135deg, #334155 0%, #475569 100%) !important;
+                color: #e2e8f0 !important;
+            }
+            
+            .post-title {
+                color: #f1f5f9 !important;
+            }
+            
+            .post-excerpt {
+                color: #cbd5e1 !important;
+            }
+            
+            .section-title {
+                color: #f1f5f9 !important;
+                border-bottom: 2px solid #475569 !important;
+            }
+            
+            .post-item {
+                border-bottom: 1px solid #374151 !important;
+            }
+            
+            .post-image {
+                background: #374151 !important;
+            }
+            
+            .post-meta {
+                color: #9ca3af !important;
+            }
+            
+            .post-item .post-title a {
+                color: #f1f5f9 !important;
+            }
+            
+            .post-item .post-title a:hover {
+                color: #93c5fd !important;
+            }
+            
+            .post-item .post-excerpt {
+                color: #cbd5e1 !important;
+            }
+            
+            .stats-section {
+                background: #374151 !important;
+                color: #e2e8f0 !important;
+            }
+            
+            .stat-label {
+                color: #9ca3af !important;
+            }
+            
+            .footer {
+                background: #111827 !important;
+                color: #d1d5db !important;
+            }
+            
+            .footer-links a {
+                color: #d1d5db !important;
+            }
+            
+            .footer-links a:hover {
+                color: #f9fafb !important;
+            }
+            
+            .social-links a {
+                background: #1f2937 !important;
+                color: #e5e7eb !important;
+            }
+            
+            .social-links a:hover {
+                background: #667eea !important;
+            }
+            
+            .unsubscribe {
+                color: #9ca3af !important;
+            }
+            
+            .unsubscribe a {
+                color: #9ca3af !important;
+            }
+        }
+        
         @media (max-width: 600px) {
             .container {
                 margin: 10px;
@@ -332,11 +431,7 @@
                 <a href="{{ contact_url }}">Contact</a>
             </div>
             
-            <div class="social-links">
-                <a href="{{ linkedin_url }}" title="LinkedIn">💼</a>
-                <a href="{{ twitter_url }}" title="Twitter">🐦</a>
-                <a href="{{ github_url }}" title="GitHub">⚡</a>
-            </div>
+
             
             <p style="margin: 20px 0 10px;">
                 <strong>Gumisofts</strong><br>

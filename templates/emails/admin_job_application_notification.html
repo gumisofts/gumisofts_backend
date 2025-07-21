@@ -204,6 +204,157 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
+        
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #0f172a !important;
+                color: #e2e8f0 !important;
+            }
+            
+            .container {
+                background: #1e293b !important;
+                box-shadow: 0 4px 25px rgba(0,0,0,0.3) !important;
+            }
+            
+            .content {
+                color: #e2e8f0 !important;
+            }
+            
+            .notification-box {
+                background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%) !important;
+                border: 2px solid #6366f1 !important;
+                color: #e0e7ff !important;
+            }
+            
+            .notification-box h3 {
+                color: #93c5fd !important;
+            }
+            
+            .applicant-info {
+                background: #334155 !important;
+                border: 1px solid #475569 !important;
+                color: #e2e8f0 !important;
+            }
+            
+            .applicant-info h3 {
+                color: #cbd5e1 !important;
+            }
+            
+            .job-info {
+                background: #14532d !important;
+                border: 1px solid #166534 !important;
+                color: #e2e8f0 !important;
+            }
+            
+            .job-info h3 {
+                color: #86efac !important;
+            }
+            
+            .stats-section {
+                background: #374151 !important;
+                color: #e2e8f0 !important;
+            }
+            
+            .stats-section h3 {
+                color: #f1f5f9 !important;
+            }
+            
+            .stat-item {
+                background: #1e293b !important;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+            }
+            
+            .stat-number {
+                color: #6366f1 !important;
+            }
+            
+            .stat-label {
+                color: #9ca3af !important;
+            }
+            
+            .detail-row {
+                border-bottom: 1px solid #475569 !important;
+            }
+            
+            .detail-label {
+                color: #cbd5e1 !important;
+            }
+            
+            .detail-value {
+                color: #e2e8f0 !important;
+            }
+            
+            .detail-value a {
+                color: #60a5fa !important;
+            }
+            
+            .priority-badge.priority-high {
+                background: #991b1b !important;
+                color: #fecaca !important;
+            }
+            
+            .priority-badge.priority-medium {
+                background: #9a3412 !important;
+                color: #fed7aa !important;
+            }
+            
+            .priority-badge.priority-low {
+                background: #065f46 !important;
+                color: #d1fae5 !important;
+            }
+            
+            /* Cover letter preview */
+            .cover-letter-preview {
+                background: #451a03 !important;
+                border-left: 4px solid #f59e0b !important;
+                color: #fef3c7 !important;
+            }
+            
+            .cover-letter-preview h4 {
+                color: #fbbf24 !important;
+            }
+            
+            .cover-letter-preview div {
+                background: #1e293b !important;
+                color: #d1d5db !important;
+            }
+            
+            /* Additional actions section */
+            .additional-actions {
+                background: #374151 !important;
+                color: #e2e8f0 !important;
+            }
+            
+            .additional-actions h4 {
+                color: #f1f5f9 !important;
+            }
+            
+            .additional-actions ul {
+                color: #d1d5db !important;
+            }
+            
+            .additional-actions a {
+                color: #60a5fa !important;
+            }
+            
+            .footer {
+                background: #111827 !important;
+                color: #d1d5db !important;
+            }
+            
+            .footer p {
+                color: #9ca3af !important;
+            }
+            
+            .timestamp {
+                color: #9ca3af !important;
+            }
+            
+            .timestamp p {
+                color: #9ca3af !important;
+            }
+        }
     </style>
 </head>
 <body>

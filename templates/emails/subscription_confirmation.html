@@ -83,6 +83,68 @@
             font-size: 48px;
             margin-bottom: 20px;
         }
+        
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #0f172a !important;
+                color: #e2e8f0 !important;
+            }
+            
+            .container {
+                background: #1e293b !important;
+                box-shadow: 0 4px 25px rgba(0,0,0,0.3) !important;
+            }
+            
+            .content {
+                color: #e2e8f0 !important;
+            }
+            
+            .content p {
+                color: #e2e8f0 !important;
+            }
+            
+            .welcome-message {
+                color: #f1f5f9 !important;
+            }
+            
+            .confirmation-box {
+                background: #334155 !important;
+                border-left: 4px solid #8b5cf6 !important;
+                color: #e2e8f0 !important;
+            }
+            
+            .content ul {
+                color: #cbd5e1 !important;
+            }
+            
+            .footer {
+                background: #111827 !important;
+                border-top: 1px solid #374151 !important;
+                color: #9ca3af !important;
+            }
+            
+            .footer p {
+                color: #9ca3af !important;
+            }
+            
+            .unsubscribe {
+                color: #9ca3af !important;
+            }
+            
+            .unsubscribe a {
+                color: #9ca3af !important;
+            }
+            
+            /* Inline styles override */
+            .call-to-action p {
+                color: #f1f5f9 !important;
+            }
+            
+            .italics-text {
+                color: #9ca3af !important;
+            }
+        }
     </style>
 </head>
 <body>
