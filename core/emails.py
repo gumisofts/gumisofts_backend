@@ -23,7 +23,7 @@ def send_email_to(
         email = EmailMultiAlternatives(
             subject=subject,
             body=message,
-            from_email=f"Gumisofts <{settings.EMAIL_HOST_USER}>",
+            from_email=settings.DEFAULT_FROM_EMAIL,
             to=to_emails,
         )
         email.attach_alternative(html_message, "text/html")
@@ -33,7 +33,7 @@ def send_email_to(
         return send_mail(
             subject,
             message,
-            f"Gumisofts <{settings.EMAIL_HOST_USER}> ",
+            settings.DEFAULT_FROM_EMAIL,
             to_emails,
             fail_silently=False,
         )

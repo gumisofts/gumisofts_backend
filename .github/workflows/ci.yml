@@ -144,6 +144,10 @@ jobs:
           echo "STATIC_URL=${{vars.STATIC_URL}}" >> .env
           echo "ALLOWED_HOSTS=${{vars.ALLOWED_HOSTS}}" >> .env
           echo "CORS_ALLOWED_ORIGINS=${{vars.CORS_ALLOWED_ORIGINS}}" >> .env
+          echo "EMAIL_HOST=${{vars.EMAIL_HOST}}" >> .env
+          echo "EMAIL_PORT=${{vars.EMAIL_PORT}}" >> .env
+          echo "EMAIL_HOST_USER=${{vars.EMAIL_HOST_USER}}" >> .env
+          echo "EMAIL_HOST_PASSWORD=${{secrets.EMAIL_HOST_PASSWORD}}" >> .env
 
       - name: Copy AWS Credentials
         run: |
